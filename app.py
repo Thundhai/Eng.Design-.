@@ -337,6 +337,8 @@ async def download_report(session_id: str):
 
 async def cli_main(parsed_args=None):
     """Command-line interface main function."""
+    global state
+    
     if parsed_args is None:
         parser = argparse.ArgumentParser(description="AI Design Suite CLI")
         parser.add_argument("--message", "-m", help="Design message/query")
@@ -348,8 +350,17 @@ async def cli_main(parsed_args=None):
         
         parsed_args = parser.parse_args()
     
-    # Initialize application
-    await state.initialize()
+    # Initialize application state for CLI mode
+    if state is None:
+        print("🚀 Starting AI Design Suite CLI...")
+        state = AppState()
+        await state.initialize()
+        
+        # Create necessary directories
+        for directory in ['./temp', './outputs', './sessions']:
+            os.makedirs(directory, exist_ok=True)
+        
+        print("✅ AI Design Suite initialized with LLM provider:", os.getenv('LLM_PROVIDER', 'mock'))
     
     if parsed_args.interactive or parsed_args.cli:
         await interactive_cli()
