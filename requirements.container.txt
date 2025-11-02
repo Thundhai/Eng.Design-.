@@ -12,7 +12,7 @@ python-multipart==0.0.6
 
 # AI and LLM (beta versions)
 azure-ai-inference==1.0.0b9
-azure-identity==1.15.0
+azure-identity==1.16.1
 
 # Data processing (essential only)
 requests==2.31.0
