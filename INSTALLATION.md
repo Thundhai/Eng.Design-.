@@ -35,7 +35,7 @@ source .venv/bin/activate
 pip install --pre -r requirements.txt
 ```
 
-**Note**: The `--pre` flag is required because the Microsoft Agent Framework is in preview.
+**Note**: The `--pre` flag is required because Microsoft Agent Framework and Azure AI Inference are in preview/beta.
 
 ### Step 4: Install Optional Features
 

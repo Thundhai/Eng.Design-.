@@ -36,7 +36,7 @@ A comprehensive multi-disciplinary AI agent suite for design engineers covering 
 
 ### Quick Start (Recommended)
 
-⚠️ **Important**: The `--pre` flag is required while Agent Framework is in preview.
+⚠️ **Important**: The `--pre` flag is required because Microsoft Agent Framework and Azure AI Inference are in preview.
 
 ```bash
 # Create virtual environment

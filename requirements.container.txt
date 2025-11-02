@@ -1,11 +1,18 @@
 # Minimal requirements for Docker container - guaranteed to work
 # Core dependencies only for AI Design Suite functionality
 
+# Microsoft Agent Framework (beta)
+agent-framework-azure-ai==1.0.0b251028
+
 # Core web framework
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 pydantic==2.5.0
 python-multipart==0.0.6
+
+# AI and LLM (beta versions)
+azure-ai-inference==1.0.0b9
+azure-identity==1.15.0
 
 # Data processing (essential only)
 requests==2.31.0
