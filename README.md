@@ -34,6 +34,8 @@ A comprehensive multi-disciplinary AI agent suite for design engineers covering 
 
 ## Installation
 
+### Quick Start (Recommended)
+
 ⚠️ **Important**: The `--pre` flag is required while Agent Framework is in preview.
 
 ```bash
@@ -46,8 +48,37 @@ python -m venv .venv
 # Linux/Mac:
 source .venv/bin/activate
 
-# Install dependencies
-pip install -r requirements.txt
+# Install core dependencies (WORKING!)
+pip install --pre -r requirements.txt
+
+# Install basic optional features (file processing, CAD support)
+pip install -r requirements-basic-optional.txt
+```
+
+### Advanced Installation (Optional CAD Features)
+
+For advanced CAD functionality, some packages require special installation:
+
+```bash
+# FreeCAD integration (system installation required)
+# 1. Download from https://www.freecadweb.org/
+# 2. Install system-wide
+# 3. Test: python -c "import FreeCAD"
+
+# Advanced CAD with conda (recommended for complex features)
+conda create -n ai-design-cad python=3.11
+conda activate ai-design-cad
+conda install -c conda-forge pythonocc-core ifcopenshell
+pip install --pre -r requirements.txt
+```
+
+### Docker Installation (All Dependencies Included)
+
+```bash
+# Build and run with all dependencies pre-installed
+docker-compose up -d
+
+# Access at http://localhost:8000
 ```
 
 ## Configuration

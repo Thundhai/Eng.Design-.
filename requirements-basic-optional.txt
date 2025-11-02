@@ -1,0 +1,17 @@
+# Easy to install optional dependencies for AI Design Suite
+# These packages install without complex system dependencies
+
+# CAD File Format Support
+ezdxf>=1.0.0
+
+# Scientific Computing
+scipy>=1.10.0
+
+# File Processing
+openpyxl>=3.1.0
+python-docx>=0.8.11
+reportlab>=4.0.0
+Pillow>=10.0.0
+
+# Text-to-Speech (Windows compatible)
+pyttsx3>=2.90

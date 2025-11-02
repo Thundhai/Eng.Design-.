@@ -1,84 +1,75 @@
 # Optional Dependencies for AI Design Suite
-# These packages require additional system dependencies or have complex installation procedures
+# These packages are not required for basic functionality but enable advanced features
 
-# CAD and Engineering Libraries
+# ==============================================
+# EASY TO INSTALL PACKAGES
 # ==============================================
 
-# FreeCAD Python Interface
-# Requires: System FreeCAD installation
-# Installation: Download FreeCAD from https://www.freecadweb.org/
-# Then: pip install FreeCAD-python>=0.21.0
-FreeCAD-python>=0.21.0
-
-# IFC File Format Support
-# May require: Build tools, Visual Studio Build Tools on Windows
-# Installation: pip install ifcopenshell>=0.7.0
-ifcopenshell>=0.7.0
-
-# OpenCASCADE Technology (3D modeling kernel)
-# Complex installation - recommend using conda
-# Installation: conda install -c conda-forge pythonocc-core
-# Or: pip install pythonOCC-core>=7.7.0 (may fail without proper setup)
-pythonOCC-core>=7.7.0
-
-# DXF File Format Support
-# Usually installs without issues
+# DXF File Format Support (CAD files)
 ezdxf>=1.0.0
 
-# Advanced Math and Engineering
-# ==============================================
-
-# Scientific computing
+# Scientific computing and engineering math
 scipy>=1.10.0
 
-# Voice Processing (Optional)
-# ==============================================
-
-# Speech Recognition and TTS
-# Requires: Additional audio libraries
-# faster-whisper may require: CUDA libraries for GPU acceleration
-faster-whisper>=0.10.0
+# File Processing
+openpyxl>=3.1.0        # Excel file support
+python-docx>=0.8.11    # Word document support
+reportlab>=4.0.0       # PDF generation
+Pillow>=10.0.0         # Image processing
 
 # Text-to-Speech (Windows compatible)
 pyttsx3>=2.90
 
-# Advanced File Processing
+# ==============================================
+# COMPLEX INSTALLATION PACKAGES
+# ==============================================
+# These require special installation procedures
+# DO NOT install via pip install -r requirements-optional.txt
+
+# FreeCAD Python Interface
+# ❌ No direct pip package available
+# ✅ Install FreeCAD system-wide from https://www.freecadweb.org/
+# ✅ Then import FreeCAD from system installation
+
+# IFC File Format Support (Building Information Modeling)
+# ❌ May fail on Windows without Visual Studio Build Tools
+# ✅ Manual installation: pip install ifcopenshell
+# ✅ Alternative: Use conda-forge channel
+
+# OpenCASCADE Technology (3D modeling kernel)  
+# ❌ Complex compilation requirements
+# ✅ Recommended: conda install -c conda-forge pythonocc-core
+# ✅ Alternative: Use Docker with pre-built environment
+
+# Advanced Speech Recognition
+# ❌ Requires CUDA libraries for optimal performance
+# ✅ Manual installation: pip install faster-whisper
+# ✅ May require additional audio system libraries
+
+# ==============================================
+# INSTALLATION INSTRUCTIONS
 # ==============================================
 
-# Excel file support
-openpyxl>=3.1.0
+# STEP 1: Install easy packages
+# pip install ezdxf scipy openpyxl python-docx reportlab Pillow pyttsx3
 
-# Word document support
-python-docx>=0.8.11
+# STEP 2: For FreeCAD support (optional)
+# 1. Download FreeCAD from https://www.freecadweb.org/
+# 2. Install system-wide
+# 3. Test: python -c "import FreeCAD; print('FreeCAD available')"
 
-# PDF generation
-reportlab>=4.0.0
+# STEP 3: For advanced CAD features (optional, use conda)
+# conda create -n ai-design-cad python=3.11
+# conda activate ai-design-cad  
+# conda install -c conda-forge pythonocc-core ifcopenshell
+# pip install --pre -r requirements.txt
 
-# Image processing
-Pillow>=10.0.0
+# STEP 4: For speech features (optional)
+# pip install faster-whisper
+# May require: Visual Studio Build Tools on Windows
 
-# Installation Instructions:
-# =========================
-
-# 1. Essential packages (install first):
-#    pip install --pre -r requirements.txt
-
-# 2. CAD libraries (install if needed):
-#    pip install ezdxf>=1.0.0
-
-# 3. Advanced math (if using structural analysis):
-#    pip install scipy>=1.10.0
-
-# 4. File processing (for document generation):
-#    pip install openpyxl>=3.1.0 python-docx>=0.8.11 reportlab>=4.0.0 Pillow>=10.0.0
-
-# 5. FreeCAD (complex installation):
-#    - Download and install FreeCAD from https://www.freecadweb.org/
-#    - Add FreeCAD to system PATH
-#    - pip install FreeCAD-python>=0.21.0
-
-# 6. pythonOCC (complex installation, prefer conda):
-#    conda install -c conda-forge pythonocc-core
-
-# Note: The AI Design Suite will work with mock implementations
-# if these optional dependencies are not available.
+# ==============================================
+# DOCKER ALTERNATIVE
+# ==============================================
+# All dependencies pre-installed in Docker container:
+# docker-compose up -d
