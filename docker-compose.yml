@@ -1,0 +1,38 @@
+# Docker Compose for AI Design Suite
+# Provides easy deployment with all necessary services
+
+services:
+  ai-design-suite:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: ai-design-suite:latest
+    container_name: ai-design-suite-app
+    ports:
+      - "8003:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LLM_PROVIDER=mock
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      # Persistent storage for outputs and sessions
+      - ./outputs:/app/outputs
+      - ./sessions:/app/sessions
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - ai-design-network
+
+networks:
+  ai-design-network:
+    driver: bridge

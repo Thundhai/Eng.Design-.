@@ -1,0 +1,17 @@
+# Minimal requirements for Docker container - guaranteed to work
+# Core dependencies only for AI Design Suite functionality
+
+# Core web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# Data processing (essential only)
+requests==2.31.0
+
+# Environment
+python-dotenv==1.0.0
+
+# Basic file handling
+Pillow==10.1.0
