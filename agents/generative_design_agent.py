@@ -47,8 +47,15 @@ class GenerativeDesignAgent(BaseAgent):
             
             self.log_activity(f"Processing generative design request: {intent}")
             
+            # Check if params contains a nested intent (for root agent compatibility)
+            if 'intent' in params:
+                nested_intent = params['intent']
+                if nested_intent in ['parametric_variations', 'optimize_design', 'topology_optimization', 
+                                   'design_exploration', 'performance_optimization']:
+                    intent = nested_intent
+            
             # Route to specific handler
-            if intent == 'parametric_variations':
+            if intent in ['generative', 'parametric_variations']:
                 return await self._generate_parametric_variations(params)
             elif intent == 'optimize_design':
                 return await self._optimize_design(params)

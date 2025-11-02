@@ -139,14 +139,14 @@ class RootAgent(BaseAgent):
             # Extract and classify intent
             intent = await self._classify_intent(input)
             
-            # Check for automated workflow keywords
+            # Handle multi-agent workflows first (explicit user request takes priority)
+            if input.get('multi_agent', False) or len(intent) > 1:
+                return await self._handle_multi_agent_workflow(input, intent)
+            
+            # Check for automated workflow keywords (only if not explicitly multi-agent)
             message = input.get('message', '').lower()
             if any(keyword in message for keyword in ['complete', 'full', 'comprehensive', 'automated', 'end-to-end']):
                 return await self._handle_automated_workflow(input)
-            
-            # Handle multi-agent workflows
-            if input.get('multi_agent', False) or len(intent) > 1:
-                return await self._handle_multi_agent_workflow(input, intent)
             
             # Single agent workflow
             agent_type = intent[0] if intent else 'general'
@@ -190,11 +190,14 @@ class RootAgent(BaseAgent):
         
         # Simple keyword-based classification
         detected_intents = []
+        agent_types_found = set()
         for keyword, agent_type in self.agent_mapping.items():
             if keyword in message:
-                agent_name = agent_type.__name__.replace('Agent', '').lower()
-                if agent_name not in detected_intents:
-                    detected_intents.append(agent_name)
+                # Map agent types to primary intent names
+                primary_intent = self._get_primary_intent_for_agent(agent_type)
+                if primary_intent not in detected_intents:
+                    detected_intents.append(primary_intent)
+                    agent_types_found.add(agent_type)
         
         # Advanced LLM-based classification for ambiguous cases
         if not detected_intents and self.llm_client:
@@ -204,6 +207,27 @@ class RootAgent(BaseAgent):
         
         # Default to general/copilot if no specific intent detected
         return detected_intents if detected_intents else ['general']
+    
+    def _get_primary_intent_for_agent(self, agent_type) -> str:
+        """Map agent type to primary intent name."""
+        agent_intent_mapping = {
+            'CivilDesignAgent': 'civil',
+            'StructuralDesignAgent': 'structural', 
+            'MechanicalDesignAgent': 'mechanical',
+            'ElectricalDesignAgent': 'electrical',
+            'InteriorDesignAgent': 'interior',
+            'BOMAgent': 'bom',
+            'ComplianceAgent': 'compliance',
+            'DrawingQAAgent': 'qa',
+            'SustainabilityAgent': 'sustainability',
+            'GenerativeDesignAgent': 'generative',
+            'PlanningEngineerAgent': 'planning',
+            'GeneralAssistantAgent': 'general'
+        }
+        
+        # Get class name from agent type
+        agent_class_name = agent_type.__name__ if hasattr(agent_type, '__name__') else str(agent_type)
+        return agent_intent_mapping.get(agent_class_name, 'general')
     
     async def _llm_classify_intent(self, message: str) -> Optional[str]:
         """Use LLM to classify complex or ambiguous intents."""
