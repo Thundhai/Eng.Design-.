@@ -15,12 +15,6 @@ openai>=1.30.0
 azure-identity>=1.15.0
 azure-ai-inference>=1.0.0
 
-# CAD and Engineering
-FreeCAD-python>=0.21.0  # Note: May require system FreeCAD installation
-ifcopenshell>=0.7.0
-pythonOCC-core>=7.7.0
-ezdxf>=1.0.0
-
 # Data processing
 pandas>=2.0.0
 numpy>=1.24.0
@@ -32,12 +26,7 @@ python-docx>=0.8.11
 reportlab>=4.0.0
 Pillow>=10.0.0
 
-# Voice processing (optional)
-faster-whisper>=0.10.0
-pyttsx3>=2.90
-
 # Database
-sqlite3  # Built-in with Python
 sqlalchemy>=2.0.0
 
 # Testing
@@ -45,10 +34,20 @@ pytest>=7.4.0
 pytest-asyncio>=0.21.0
 httpx>=0.25.0
 
-# Development
+# Development (optional)
 black>=23.0.0
 flake8>=6.0.0
 mypy>=1.5.0
 
 # Environment
 python-dotenv>=1.0.0
+
+# Note: CAD libraries require additional system dependencies:
+# - FreeCAD-python>=0.21.0  (requires system FreeCAD installation)
+# - ifcopenshell>=0.7.0     (may require additional build tools)
+# - pythonOCC-core>=7.7.0   (complex installation, consider conda)
+# - ezdxf>=1.0.0           (CAD file format support)
+
+# Note: Voice processing libraries (optional):
+# - faster-whisper>=0.10.0  (requires additional dependencies)
+# - pyttsx3>=2.90          (text-to-speech, Windows compatible)

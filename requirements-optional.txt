@@ -1,0 +1,84 @@
+# Optional Dependencies for AI Design Suite
+# These packages require additional system dependencies or have complex installation procedures
+
+# CAD and Engineering Libraries
+# ==============================================
+
+# FreeCAD Python Interface
+# Requires: System FreeCAD installation
+# Installation: Download FreeCAD from https://www.freecadweb.org/
+# Then: pip install FreeCAD-python>=0.21.0
+FreeCAD-python>=0.21.0
+
+# IFC File Format Support
+# May require: Build tools, Visual Studio Build Tools on Windows
+# Installation: pip install ifcopenshell>=0.7.0
+ifcopenshell>=0.7.0
+
+# OpenCASCADE Technology (3D modeling kernel)
+# Complex installation - recommend using conda
+# Installation: conda install -c conda-forge pythonocc-core
+# Or: pip install pythonOCC-core>=7.7.0 (may fail without proper setup)
+pythonOCC-core>=7.7.0
+
+# DXF File Format Support
+# Usually installs without issues
+ezdxf>=1.0.0
+
+# Advanced Math and Engineering
+# ==============================================
+
+# Scientific computing
+scipy>=1.10.0
+
+# Voice Processing (Optional)
+# ==============================================
+
+# Speech Recognition and TTS
+# Requires: Additional audio libraries
+# faster-whisper may require: CUDA libraries for GPU acceleration
+faster-whisper>=0.10.0
+
+# Text-to-Speech (Windows compatible)
+pyttsx3>=2.90
+
+# Advanced File Processing
+# ==============================================
+
+# Excel file support
+openpyxl>=3.1.0
+
+# Word document support
+python-docx>=0.8.11
+
+# PDF generation
+reportlab>=4.0.0
+
+# Image processing
+Pillow>=10.0.0
+
+# Installation Instructions:
+# =========================
+
+# 1. Essential packages (install first):
+#    pip install --pre -r requirements.txt
+
+# 2. CAD libraries (install if needed):
+#    pip install ezdxf>=1.0.0
+
+# 3. Advanced math (if using structural analysis):
+#    pip install scipy>=1.10.0
+
+# 4. File processing (for document generation):
+#    pip install openpyxl>=3.1.0 python-docx>=0.8.11 reportlab>=4.0.0 Pillow>=10.0.0
+
+# 5. FreeCAD (complex installation):
+#    - Download and install FreeCAD from https://www.freecadweb.org/
+#    - Add FreeCAD to system PATH
+#    - pip install FreeCAD-python>=0.21.0
+
+# 6. pythonOCC (complex installation, prefer conda):
+#    conda install -c conda-forge pythonocc-core
+
+# Note: The AI Design Suite will work with mock implementations
+# if these optional dependencies are not available.
