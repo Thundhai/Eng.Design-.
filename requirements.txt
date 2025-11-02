@@ -2,7 +2,7 @@
 # Core dependencies for AI Design Suite
 
 # Microsoft Agent Framework (REQUIRED --pre flag during preview)
-agent-framework-azure-ai>=0.1.0
+agent-framework-azure-ai==1.0.0b251028
 
 # Core Python packages
 fastapi>=0.104.0
