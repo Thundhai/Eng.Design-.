@@ -2,7 +2,8 @@
 # Core dependencies for AI Design Suite
 
 # Microsoft Agent Framework (REQUIRED --pre flag during preview)
-agent-framework-azure-ai==1.0.0b251028
+# Using older version compatible with Python 3.14
+agent-framework-azure-ai==1.0.0b251016
 
 # Core Python packages
 fastapi>=0.104.0
@@ -41,6 +42,9 @@ mypy>=1.5.0
 
 # Environment
 python-dotenv>=1.0.0
+
+# Redis dependency (compatible with Python 3.14)
+redisvl>=0.3.0,<0.8.0
 
 # Note: CAD libraries require additional system dependencies:
 # - FreeCAD-python>=0.21.0  (requires system FreeCAD installation)

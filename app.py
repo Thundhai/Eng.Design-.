@@ -15,6 +15,7 @@ from typing import Dict, Any, Optional, List
 import uvicorn
 from datetime import datetime, timezone
 from dotenv import load_dotenv
+from contextlib import asynccontextmanager
 
 # Load environment variables from .env file
 load_dotenv()
@@ -75,12 +76,35 @@ class ChatResponse(BaseModel):
 # FastAPI Application Setup
 # ============================================================================
 
+# Global application state
+state = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Manage application lifespan."""
+    global state
+    
+    # Startup
+    print("🚀 Starting AI Design Suite Web Server...")
+    state = AppState()
+    await state.initialize()
+    
+    # Create necessary directories
+    for directory in ['./temp', './outputs', './sessions']:
+        os.makedirs(directory, exist_ok=True)
+    
+    yield
+    
+    # Shutdown (if needed)
+    pass
+
 app = FastAPI(
     title="AI Design Suite",
     description="Comprehensive multi-disciplinary design engineering AI agent suite",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    lifespan=lifespan
 )
 
 # Enable CORS for web UI
@@ -151,20 +175,6 @@ class AppState:
                 'session_dir': './sessions'
             }
         }
-
-
-# Global application state
-state = AppState()
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Initialize application on startup."""
-    await state.initialize()
-    
-    # Create necessary directories
-    for directory in ['./temp', './outputs', './sessions']:
-        os.makedirs(directory, exist_ok=True)
 
 
 # ============================================================================
