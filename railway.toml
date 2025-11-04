@@ -1,0 +1,15 @@
+# Railway Configuration for AI Design Suite
+app = "ai-design-suite"
+
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "python app.py --host 0.0.0.0 --port $PORT"
+
+[env]
+LLM_PROVIDER = "mock"
+ENVIRONMENT = "production"
+
+[build.env]
+NIXPACKS_PYTHON_VERSION = "3.11"

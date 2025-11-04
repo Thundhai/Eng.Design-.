@@ -13,7 +13,7 @@ python-multipart>=0.0.6
 
 # AI and LLM
 openai>=1.30.0
-azure-identity>=1.15.0
+azure-identity>=1.17.0
 azure-ai-inference==1.0.0b9
 
 # Data processing

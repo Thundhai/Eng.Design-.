@@ -1,0 +1,26 @@
+# Railway deployment requirements - simplified and stable
+# Core web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# Data processing
+requests==2.31.0
+
+# Environment
+python-dotenv==1.0.0
+
+# Basic file handling
+Pillow==10.1.0
+
+# LLM client dependencies (minimal)
+azure-core>=1.30.0
+azure-identity>=1.17.0
+
+# Optional: If you want to use Azure AI (can be disabled)
+# azure-ai-inference==1.0.0b9
+
+# Async support
+aiofiles>=24.1.0
+asyncio-mqtt==0.16.2
