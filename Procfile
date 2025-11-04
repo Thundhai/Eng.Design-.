@@ -1,0 +1,1 @@
+web: pip install -r requirements.minimal.txt && python app_minimal.py --host 0.0.0.0 --port $PORT
