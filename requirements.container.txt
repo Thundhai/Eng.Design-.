@@ -15,7 +15,7 @@ azure-ai-inference==1.0.0b9
 azure-identity>=1.17.0
 
 # Data processing (essential only)
-requests==2.31.0
+requests==2.33.0
 
 # Environment
 python-dotenv==1.0.0
